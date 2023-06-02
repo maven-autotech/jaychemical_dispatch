@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="user_ip_address_tree_view" model="ir.ui.view">
+            <field name="name">user.ip.address.tree.view</field>
+            <field name="model">user.ip.address</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="name"/>
+                    <field name="ip_address"/>
+                    <field name="printer_ip_address"/>
+                </tree>
+            </field>
+        </record>
+        <record id="user_ip_address_form_view" model="ir.ui.view">
+            <field name="name">user.ip.address.form.view</field>
+            <field name="model">user.ip.address</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="ip_address"/>
+                            <field name="printer_ip_address"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="user_ip_address_action" model="ir.actions.act_window">
+            <field name="name">User Details</field>
+            <field name="res_model">user.ip.address</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="user_ip_menu" action="user_ip_address_action" name="User Details" parent="stock.menu_stock_root" sequence="6"/>
+
+
+    </data>
+</odoo>
+

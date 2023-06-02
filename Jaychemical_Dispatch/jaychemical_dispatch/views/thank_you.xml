@@ -1,0 +1,20 @@
+<odoo>
+    <template id="thank_you_page" name="Stock Input">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <br/>
+                        <br/>
+                        <h3 style="color:red"><t t-esc="error"/></h3>
+                        <form action="/thank_you" method="post" autocomplete="off">
+                            <br/>
+                            <br/>
+                            <h4 style="color:green">Your Scanning is done..........Thank you</h4>
+                        </form>
+                    </center>
+            </div>
+            </div>
+        </t>
+    </template>
+</odoo>

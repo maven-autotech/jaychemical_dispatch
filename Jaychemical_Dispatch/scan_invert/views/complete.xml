@@ -1,0 +1,22 @@
+<odoo>
+    <template id="complete_page" name="Inward">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <br />
+                        <br />
+                        <h1 style="color:green;">Scan Completed</h1>
+                        <form action="/scan_complete" method="post" autocomplete="off">
+                            <div class="form-group row">
+                                <div class="col-lg-12 col-md-12 text-center">
+                                    <input type="submit" class="btn btn-outline-primary btn-lg" value="Done" />
+                                </div>
+                            </div>
+                        </form>
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

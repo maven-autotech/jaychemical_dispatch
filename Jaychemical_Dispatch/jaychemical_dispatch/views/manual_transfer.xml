@@ -1,0 +1,143 @@
+<odoo>
+    <template id="manual_transfer_page" name="Inward">
+        <style>
+            <!--            background-image: url('background_image.jpg');-->
+
+            h1 {
+            font-family: "Times New Roman", Times, serif;
+            text-shadow: 2px 2px 3px black;
+            }
+            .oe_structure {
+            background-image: url("https://i.pinimg.com/750x/b4/da/b6/b4dab6c409217becb93bd71dc5311f10.jpg");
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size:cover;
+            }
+
+
+        </style>
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+
+                    <center>
+                        <div id="wrap" class="oe_structure" style="overflow-y:auto; height:170px;">
+                            <t t-if="table1">
+                                <table class="table table-bordered table-condensed"
+                                       style="border-collapse:collapse; width:90%; font-size: 12px;">
+                                    <thead style="position:sticky; top:0; border:2px solid">
+                                        <th style="background:#C0C0C0; position:sticky; border:2px solid; width:25%;">
+                                            <b>Material</b>
+                                        </th>
+                                        <th style="background:#C0C0C0; position:sticky; border:2px solid; ">
+                                            <b>Rec Qty</b>
+                                        </th>
+                                        <th style="background:#C0C0C0; position:sticky; border:2px solid; ">
+                                            <b>Scn Qty</b>
+                                        </th>
+                                        <th style="background:#C0C0C0; position:sticky; border:2px solid; width:35%">
+                                            <b>Location</b>
+                                        </th>
+                                    </thead>
+                                    <t t-foreach="table1" t-as="item">
+                                        <tbody>
+                                            <tr>
+                                                <td style="border:2px solid">
+                                                    <t t-esc="item"/>
+                                                </td>
+                                                <td style="border:2px solid">
+                                                    <t t-esc="item_value[0]"/>
+                                                </td>
+                                                <td style="border:2px solid">
+                                                    <t t-esc="item_value[1]"/>
+                                                </td>
+                                                <td style="border:2px solid">
+                                                    <t t-esc="item_value[2]"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </t>
+                                </table>
+                            </t>
+
+                            <t t-if="table2">
+                                <table class="table table-bordered table-condensed"
+                                       style="border-collapse:collapse; width:90%; font-size: 12px;">
+                                    <thead style="position:sticky; top:0; border:2px solid">
+                                        <th style="background:#C0C0C0; position:sticky; border:2px solid; width:25%;">
+                                            <b>Product</b>
+                                        </th>
+                                        <th style="background:#C0C0C0; position:sticky; border:2px solid; ">
+                                            <b>Total Quantity</b>
+                                        </th>
+                                        <th style="background:#C0C0C0; position:sticky; border:2px solid; ">
+                                            <b>Remain Quantity</b>
+                                        </th>
+                                    </thead>
+                                    <t t-foreach="table2" t-as="item">
+                                        <tbody>
+                                            <tr>
+                                                <td style="border:2px solid">
+                                                    <t t-esc="item"/>
+                                                </td>
+                                                <td style="border:2px solid">
+                                                    <t t-esc="item_value[0]"/>
+                                                </td>
+                                                <td style="border:2px solid">
+                                                    <t t-esc="item_value[1]"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </t>
+                                </table>
+                            </t>
+                        </div>
+
+                        <h3 t-esc="error" class="text-error" style="color:red"/>
+                        <h3 t-esc="success" class="text-success"/>
+                        <h3 t-esc="name" style="color:blue"/>
+
+                        <h1 style="margin-bottom:30px;margin-top:50px">
+                            Scan Label
+                            <h3 t-esc="pro_track" class="text-danger"/>
+                        </h1>
+                        <form action="/scan_manual_transfer" method="post" autocomplete="off">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group row form-field o_website_form_custom o_website_form_required_custom">
+                                <div class="col-lg-3 col-md-4">
+                                    <label class="col-form-label" for="serial">Scan label:</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-8">
+                                    <input autofocus="True" type="text" id="serial" name="serial" autocomplete="off"
+                                           required="" class="form-control form-control-lg o_website_form_input"/>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="form-group row">
+                                <div class="col-lg-12 col-md-12 text-cencter">
+                                    <input type="submit" class="btn btn-outline-primary btn-lg"/>
+                                </div>
+                            </div>
+                        </form>
+
+                        <br/>
+                        <br/>
+                        <form action="/back_home" method="post" autocomplete="off">
+                            <div class="form-group row">
+                                <div class="col-lg-12 col-md-12 text-cencter">
+                                    <input type="submit" class="btn btn-outline-danger btn-lg"
+                                           style="width:120px;height:40px;valign:middle;" value="Back"/>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </center>
+                </div>
+            </div>
+
+        </t>
+    </template>
+</odoo>

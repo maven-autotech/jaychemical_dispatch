@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_scan_qr_form" model="ir.ui.view">
+            <field name="name">scan.qr.form</field>
+            <field name="model">scan.qr</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <sheet>
+                        <group>
+                             <field name="name" string="Name"/>
+                             <button name="start_scan" type="object" class="btn btn-primary">Start Scan</button>
+
+                        </group>
+
+         </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="scan_qr_action">
+            <field name="name">Scan Qr</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">scan.qr</field>
+            <field name="view_mode">form</field>
+        </record>
+
+        <menuitem
+            name="Scan GRN Order"
+            sequence="10"
+            id="scan_qr_menu"
+            action="scan_qr_action"
+            web_icon="jay_chemical_raw_inward_latest_15,static/description/icon.png"
+        />
+
+    </data>
+
+</odoo>

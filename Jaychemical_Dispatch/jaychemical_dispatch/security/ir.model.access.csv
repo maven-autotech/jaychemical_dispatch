@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_scan_qr,access_scan_qr,model_scan_qr,base.group_user,1,1,1,1
+access_user_ip_address,user.ip.address,model_user_ip_address,base.group_erp_manager,1,1,1,1
+access_location_code,location.code,model_location_code,,1,1,1,1

@@ -1,0 +1,44 @@
+<odoo>
+    <template id="manual_location_page" name="Inward">
+<!--     <script type="text/javascript" src="scan_invert/static/js/focus.js"/>-->
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <br />
+                        <br />
+<!--                        <h3 t-esc="error" class="text-error" style="color:red" />-->
+<!--                        <h3 t-esc="success" class="text-success" />-->
+<!--                        <h3 t-esc="name" style="color:blue" />-->
+
+                        <h1 style="margin-bottom:30px;margin-top:50px">
+                            Destination Location
+                            <h3 t-esc="pro_track" class="text-danger" />
+                        </h1>
+
+                        <h3 t-esc="error" class="text-error" style="color:red" />
+                        <h3 t-esc="success" class="text-success" />
+                        <h3 t-esc="name" style="color:blue" />
+
+                        <form action="/scan_manual_location" method="post" autocomplete="off">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                            <div class="form-group row form-field o_website_form_custom o_website_form_required_custom">
+                                <div class="col-lg-3 col-md-4">
+                                    <label class="col-form-label" for="location">Scan location:</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-8">
+                                    <input type="text" onblur="input2(event)" autofocus="True" id="location" name="location" autocomplete="off" required="" class="form-control form-control-lg o_website_form_input" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12 col-md-12 text-cencter">
+                                    <input type="submit" class="btn btn-outline-primary btn-lg" />
+                                </div>
+                            </div>
+                        </form>
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

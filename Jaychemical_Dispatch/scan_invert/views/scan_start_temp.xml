@@ -1,0 +1,107 @@
+<odoo>
+    <template id="inventory_in_page" name="Micro Lab">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <center>
+                        <br/>
+                        <br/>
+                        <style>
+                            th{
+                                font-size:12px;
+                                min-width:40px;
+                                border:2px solid black;
+                                margin:10px;
+                                padding:10px;
+                                text-align:center;
+                            }
+                            tr{
+                            border:2px solid black;
+                            }
+                            td{
+                            min-width:40px;
+                            font-size:12px;
+                            border:2px solid black;
+                            margin:0;
+                            padding:0;
+                            }
+                        </style>
+                        <t t-if="table">
+                                <table class="thead-dark" style="width:100%;border:2px solid black;">
+                                    <thead>
+                                        <th>
+                                            <b>Product</b>
+                                        </th>
+                                        <th >
+                                            <b>Total Quantity</b>
+                                        </th>
+                                        <th >
+                                            <b>Remain Quantity</b>
+                                        </th>
+                                    </thead>
+                                    <t t-foreach="table" t-as="item">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="item"/>
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    <t t-esc="item_value[0]" />
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    <t t-esc="item_value[1]" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </t>
+                                </table>
+                            </t>
+                        <h3 style="margin-bottom:20px;margin-top:30px">
+                            Assign the Serial Number
+<!--                            <h3 t-esc="track_pro" class="text-danger"/>-->
+                        </h3>
+                        <form action="/assign_serial_invert" method="post" autocomplete="off">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group row form-field o_website_form_custom o_website_form_required_custom" t-if="track_pro ==  True">
+                                <div class="col-lg-3 col-md-4">
+                                    <label class="col-form-label" for="serial">Scan Serial No.:</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-8">
+                                    <input type="text" autofocus="True" id="serial" name="serial" autocomplete="off" required="" class="form-control form-control-lg o_website_form_input"/>
+                                </div>
+                            </div>
+                            <div class="form-group row form-field o_website_form_custom o_website_form_required_custom" t-if="track_pro == False">
+                                <div class="col-lg-3 col-md-4">
+                                    <label class="col-form-label" for="lot">Scan Lot No:</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-8">
+                                    <input type="text" autofocus="True" id="lot" name="lot" autocomplete="off" required="" class="form-control form-control-lg o_website_form_input"/>
+                                </div>
+                            </div>
+                            <div class="form-group row form-field o_website_form_custom o_website_form_required_custom" t-if="track_pro == False">
+                                <div class="col-lg-3 col-md-4">
+                                    <label class="col-form-label" for="qty">Enter Quantity:</label>
+                                </div>
+                                <div class="col-lg-7 col-sm-8">
+                                    <input type="number" id="qty" name="qty" autocomplete="off" required="" class="form-control form-control-lg o_website_form_input"/>
+                                </div>
+                            </div>
+                            <div class="form-group row d-none">
+                                <div class="col-lg-12 col-md-12 text-cencter">
+                                    <input type="submit" value="Check" class="btn btn-outline-primary btn-lg"/>
+                                </div>
+                            </div>
+                        </form>
+                        <h3 t-esc="success" class="text-success"/>
+                        <h3 t-esc="msg" class="text-success"/>
+                        <h3 t-esc="error" class="text-error" style="color:red"/>
+                        <h3 t-esc="not_assigned"/>
+                        <br/>
+                        <br/>
+<!--                        <h3><h5>Assigned SR/Lot # : </h5><t t-esc="assigned_list"/></h3>-->
+                    </center>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

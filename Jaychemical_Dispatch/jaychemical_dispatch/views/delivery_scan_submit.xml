@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="delivery_scanned_page" name="Inward">
+
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+
+                      <h3 t-esc="error" class="text-error" style="color:red"/>
+                        <h3 t-esc="success" class="text-success"/>
+
+                    <form action="/delivery_scanned" method="post" autocomplete="off">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="form-group row form-field o_website_form_custom o_website_form_required_custom">
+                            <div class="col-lg-3 col-md-4">
+
+                                <label class="col-form-label" for="serial" t-att-value="lot_id_name">Your Scaned label: </label>
+                                <input autofocus="True" id="lot_name" name="lot_name" autocomplete="off"
+                                       t-att-value="lot_id_name" readonly="True"
+                                       required="" class="form-control form-control-lg o_website_form_input"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row form-field o_website_form_custom o_website_form_required_custom">
+                            <div class="col-lg-3 col-md-4">
+                                <label class="col-form-label" for="Quantity">Total Quantity</label>
+                                <label class="col-form-label" t-att-value="values"/>
+
+                            </div>
+                            <div class="col-lg-7 col-sm-8">
+                                <input autofocus="True" type="text" id="Quantity" name="Quantity" autocomplete="off"
+                                       t-att-value="values"
+                                       required="" class="form-control form-control-lg o_website_form_input"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="form-group row">
+                            <div class="col-lg-12 col-md-12 text-center">
+                                <input type="submit" class="btn btn-outline-primary btn-lg"/>
+                            </div>
+                        </div>
+                    </form>
+                     <form action="/back_button" method="post" autocomplete="off">
+                            <div class="form-group row">
+                                <div class="col-lg-12 col-md-12 text-cencter">
+                                    <input type="submit" class="btn btn-outline-danger btn-lg" style="width:120px;height:40px;valign:middle;" value="Done" />
+                                </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

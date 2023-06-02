@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_picking_form_custome" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+<!--            <xpath expr="//notebook" position="before">-->
+<!--                <div>-->
+<!--                    <center>-->
+<!--                        &lt;!&ndash;                       <butto n name="%(stock.stock_move_action)d" class="btn btn-primary" string="Submit" type="action"/>&ndash;&gt;-->
+<!--                        <button name="action_submit" class="btn btn-primary" string="Submit" type="object"-->
+<!--                                attrs="{'invisible': [('picking_type_id', '!=', 1)]}"/>-->
+<!--                        &lt;!&ndash;                        <button name="print2" class="btn btn-primary" string="print" type="object"/>&ndash;&gt;-->
+<!--                    </center>-->
+<!--                </div>-->
+<!--            </xpath>-->
+            <!--            <xpath expr="//button[@name='button_validate'][1]" position="attributes">-->
+            <!--                <attribute name="context">{'skip_backorder': True}</attribute>-->
+            <!--            </xpath>-->
+            <!--            <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']" position="after">-->
+            <!--                <button name="action_network_printing" string="Network Print" type="object"/>-->
+            <!--            </xpath>-->
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="after">
+                <field name="line_no"/>
+<!--                <field name="line_no" attrs="{'column_invisible': [('parent.picking_type_code', '=', 'outgoing')]}"/>-->
+                <field name="lot_number"/>
+                 <field name="pack_size"/>
+                <field name="total_qty"/>
+<!--                <field name="lot_number" attrs="{'column_invisible': [('parent.picking_type_code', '=', 'outgoing')]}"/>-->
+<!--                <field name="unit_of_measurement" attrs="{'column_invisible': [('parent.picking_type_code', '=', 'outgoing')]}"/>-->
+<!--                <field name="total_qty"/>-->
+<!--                <field name="purity"/>-->
+<!--                <field name="pack_size" attrs="{'column_invisible': [('parent.picking_type_code', '=', 'outgoing')]}"/>-->
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']"
+                   position="after">
+<!--                <button name="action_submit" class="btn btn-primary" string="Get Weight" type="object"-->
+<!--                        attrs="{'invisible': [('picking_type_id', '!=', 1)]}"/>-->
+<!--                <button name="assign_lot_no" class="btn btn-primary" string="Assign Lot Number" type="object" attrs="{'invisible': [('picking_type_id','!=','incoming')]}"/>-->
+            </xpath>
+
+<!--            <xpath expr="//field[@name='move_line_ids_without_package']/tree/field[@name='product_id']" position="after">-->
+<!--                <field name="line_no"/>-->
+<!--            </xpath>-->
+
+            <xpath expr="//field[@name='move_ids_without_package']/tree/button[@name='action_show_details']"
+                   position="after">
+                <button name="action_network_printing"
+                        string="Network Print" type="object" attrs="{'invisible': [('picking_type_id','!=','incoming')]}"/>
+<!--                <field name="is_print" groups="base.group_system"/>-->
+<!--                <button name="action_network_printing"-->
+<!--                        attrs="{'invisible': ['|',('is_print', '!=', False),('state','!=','done')]}"-->
+<!--                        string="Network Print" type="object"/>-->
+            </xpath>
+
+<!--            <xpath expr="//form//header//button[@name='action_cancel']" position="after">-->
+<!--                <button name="action_delivery_controller" string="Scan" type="object" class="oe_highlight"/>-->
+<!--            </xpath>-->
+
+
+        </field>
+    </record>
+
+
+
+    <record id="stock_picking_kanban_custom" model="ir.ui.view">
+            <field name="name">stock.picking.kanban</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.stock_picking_kanban" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_kanban_bottom_left']" position="inside">
+                    <field name="origin"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_bottom_left']" position="after">
+                    <field name="picking_type_id" invisible="True"/>
+                    <button name="start_scan_picking" attrs="{'invisible':['|',('state', '!=','assigned'),('picking_type_id', '=',1)]}" type="object" class="btn btn-primary" style="width: 100px;float: left;">Start Scan</button>
+                </xpath>
+            </field>
+        </record>
+
+      <template id="replace_footer" inherit_id="website.footer_custom" name="Footer">
+        <xpath expr="//div[@id='footer']" position="replace"/>
+    </template>
+
+
+    <template id="my_header" inherit_id="website.layout" name="my_header">
+        <xpath expr="//header" position="replace">
+        </xpath>
+    </template>
+
+
+      <record id="view_warehouse_custome" model="ir.ui.view">
+        <field name="name">stock.warehouse.form</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="location_code"/>
+<!--                <field-->
+<!--                    name="allowed_users"-->
+<!--                    widget="many2many_tags"-->
+<!--                    placeholder="users"-->
+
+<!--                />-->
+                </xpath>
+        </field>
+      </record>
+
+      <record id="view_move_line_form_custome" model="ir.ui.view">
+        <field name="name">stock.move.line.form</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="line_no"/>
+                </xpath>
+        </field>
+      </record>
+
+    <record id="stock_picking_batch_kanban11" model="ir.ui.view">
+        <field name="name">stock.picking.batch.kanban</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_kanban"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[@class='oe_kanban_bottom_left']" position="inside">-->
+<!--                <field name="product_id"/>-->
+<!--            </xpath>-->
+            <xpath expr="//div[@class='oe_kanban_bottom_right']" position="before">
+                <button name="start_scan_picking_batch"
+                        type="object"
+                        class="btn btn-primary" style="width: 100px;float: left;">Start Batch Scan
+<!--                    attrs="{'invisible':['|',('state', '!=','assigned'),('picking_type_id', '=',1)]}"-->
+
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+<!--        <record id="make_invisible" model="res.groups">-->
+<!--            <field name="name">Invisible</field>-->
+<!--        </record>-->
+<!--        <record model="ir.ui.menu" id="mail.menu_root_discuss">-->
+<!--            <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>-->
+<!--        </record>-->
+
+<!--        <record id="make_invisible" model="res.groups">-->
+<!--            <field name="name">Invisible</field>-->
+<!--        </record>-->
+<!--        <record model="ir.ui.menu" id="website.menu_website_configuration">-->
+<!--            <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>-->
+<!--        </record>-->
+
+<!--        <record id="make_invisible" model="res.groups">-->
+<!--            <field name="name">Invisible</field>-->
+<!--        </record>-->
+<!--        <record model="ir.ui.menu" id="utm.menu_link_tracker_root">-->
+<!--            <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>-->
+<!--        </record>-->
+
+
+<!--     <record id="make_invisible" model="res.groups">-->
+<!--            <field name="name">Invisible</field>-->
+<!--        </record>-->
+
+<!--        <record model="ir.ui.menu" id="spreadsheet_dashboard.spreadsheet_dashboard_menu_root">-->
+<!--            <field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>-->
+<!--        </record>-->
+
+</odoo>

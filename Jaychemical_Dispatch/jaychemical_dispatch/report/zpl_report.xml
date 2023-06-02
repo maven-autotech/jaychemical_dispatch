@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!--        ###-&#45;&#45;bigtemplate-&#45;&#45;###-->
+        <template id="jc_bigtemplate">
+            <t t-foreach="docs" t-as="prd" >
+                <t t-foreach="prd.move_lines" t-as="move">
+                     <t t-foreach="move.move_line_ids" t-as="move_line">
+
+                        <t t-if="move_line.product_uom_id.category_id == uom_categ_unit">
+                            <t t-set="qty" t-value="int(move_line.qty_done)"/>
+                        </t>
+                        <t t-else="">
+                            <t t-set="qty" t-value="1"/>
+                        </t>
+                        <t t-foreach="range(qty)" t-as="item">
+<!--                            <t t-set = "counter" t-value="counter+1"/>-->
+                            <t t-translation="off">
+<!--                            <t t-set="product" t-value="move_line.product_id.p_state"/>-->
+                                ^XA
+^SZ2^JMA
+^MCY^PMN
+^PW652
+~JSN
+^JZY
+^LH0,0^LRN
+^XZ
+^XA
+^FT24,36
+^CI0
+^A0N,34,46^FD<t t-esc="move_line.product_id.name"/>^FS
+^FT240,38
+^A0N,25,34^FDQ004l^FS
+^FT24,78
+^A0N,34,38^FD<t t-esc="move_line.lot_name"/>^FS
+^FO24,84
+^GB55,27,3^FS
+^FO36,85
+^GD9,24,3,B,L^FS
+^FO59,85
+^GD7,25,3,B,R^FS
+^FO27,110
+^GB0,29,3^FS
+^FO51,110
+^GB0,29,3^FS
+^FO72,110
+^GB0,29,3^FS
+^FO189,85
+^GB0,15,3^FS
+^FO176,97
+^GD14,33,3,B,L^FS
+^FO189,130
+^GB0,15,3^FS
+^FO197,98
+^GD14,32,3,B,L^FS
+^FO210,130
+^GB0,15,3^FS
+^FO176,97
+^GD14,33,3,B,L^FS
+^FO176,97
+^GD14,33,3,B,L^FS
+^FO182,109
+^GD20,1,3,B,R^FS
+^FO206,85
+^GB0,15,3^FS
+^FT87,99
+^A0N,17,23^FD24VDC^FS
+^FT87,117
+^A0N,17,23^FD24 / 24^FS
+^FT227,117
+^A0N,17,23^FD200A^FS
+^FT227,99
+^A0N,17,23^FD240VAC^FS
+^FO79,153
+^BY1^BCN,65,N,N^FD>:<t t-esc="move_line.lot_name"/>^FS
+^FT96,235
+^A0N,17,23^FDGI/2821/05001^FS
+^PQ1,0,1,Y
+^XZ
+                            </t>
+                        </t>
+                     </t>
+                </t>
+            </t>
+        </template>
+<!--        _______________________________________MOVELINES TEMPLATES_____________________________________-->
+
+        <!--        ###-&#45;&#45;bigtemplate-&#45;&#45;###-->
+        <report id="big_template_action"
+                model="stock.picking"
+                report_type="qweb-text"
+                string="Sample PRN"
+                name="test_control.jc_bigtemplate"
+                file="test_control.jc_bigtemplate"/>
+        <!--        ###############################################-->
+
+        <!--        ###-&#45;&#45;smalltemplate-&#45;&#45;###-->
+    </data>
+</odoo>
